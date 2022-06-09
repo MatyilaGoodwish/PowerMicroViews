@@ -10,16 +10,27 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-    <p></p>
+    <div class=" container p-4">
+        <h3><span><b style="color:darkred;">BD</b> <b style="color:dimgrey">GROUP</b></span></h3>
+    </div>
+    
     <div class="container p-4">
         <button class="btn btn-lg btn-success" data-source="landing.html">Home</button>
+        <button class="btn btn-link btn-lg" data-source="contact.html">Contact Us</button>
     </div>
-  <div class="content-placeholder">
+
+    <hr />
+  <div class="content-placeholder p-4 container">
       <h3>Welcome to the micro view project</h3>
       <p>Micro view is a simple experiement by g.matyila to use workers to render the content of the website applications 
       ,focusing on XMLHttpRequest, Web Workers and HTML</p>
   </div>
 
+  <hr />
+  <div class="align-center text-center">
+      <p id="visit-duration"></p> 
+      <span class="alert alert-sm alert-info"><small id="location"></small></span>
+  </div>
     <script src="main.js"></script>
 </body>
 </html>
