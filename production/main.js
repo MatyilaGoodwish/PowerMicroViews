@@ -29,14 +29,14 @@ const init = {
                 button.addEventListener('click', (buttonAction) => {
                     //post the button id to the worker
                     app.postMessage({ route: buttonAction.target.getAttribute('data-source') });
-
+                    //push browser state
                     history.pushState({}, buttonAction.target.getAttribute('data-source'), "#/" + buttonAction.target.innerHTML.split(' ').join('-'))
                 })
             }
             //handle the events associated with the application
             app.onmessage = (response) => {
                 //render content to the dom
-                contentRender.getContainer('.content-placeholder').innerHTML = `<center> <img src="loader/loader.gif" height="140"></center>`;
+                contentRender.getContainer('.content-placeholder').innerHTML = `<center class="my-4 py-4"><p></p> <img src="loader/loader.gif" height="100"></center>`;
                 //await the content
                 setTimeout(() => {
                     contentRender.getContainer('.content-placeholder').innerHTML = response.data;
@@ -51,7 +51,7 @@ Object.setPrototypeOf(init, {
     getLocation: () => {
         navigator.geolocation.getCurrentPosition((position) => {
             //we have your location 
-            document.getElementById("location").innerHTML = `LAT: ${position.coords.latitude} LONG: ${position.coords.longitude}`
+           // document.getElementById("location").innerHTML = `LAT: ${position.coords.latitude} LONG: ${position.coords.longitude}`
         })
     }
 })
@@ -61,6 +61,7 @@ init.getLocation();
 
 //keep alive store duration of website visit
 var durationCount = 0;
+
 setInterval(() => {
     //init the application 
     init.process();
@@ -69,12 +70,17 @@ setInterval(() => {
     if (localStorage.getItem('last-duration') !== null) {
         durationCount = Number(localStorage.getItem('last-duration'));
         durationCount++;
-        document.getElementById('visit-duration').innerHTML = durationCount + "<small>s duration</small>";
+        //document.getElementById('visit-duration').innerHTML = durationCount + "<small>s duration</small>";
         localStorage.setItem('last-duration', durationCount);
     } else {
         localStorage.setItem('last-duration', 0);
     }
 }, 1200);
+
+//footer widgets
+const footer = {};
+
+
 
 
 
